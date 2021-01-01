@@ -39,7 +39,7 @@
                                 <div class="mt-2 text-sm">
                                     To view all voters in this election, <a href="{{route('voters', ['election' => $election->slug])}}" style="text-underline: #2d3748; text-decoration: underline">please click here.</a><br>
                                     To view or add email voters in this election, <a href="{{route('emailVoters', ['election' => $election->slug])}}" style="text-underline: #2d3748; text-decoration: underline">please click here.</a><br>
-                                    To download a spreadhseet of all voters in this election, please click here.<br><br>
+                                    <livewire:download-voters :election="$election" />
                                     To add voters to this election, enter the number below and click create:<br>
                                     <livewire:factory-voters :election="$election"/>
                                 </div>
