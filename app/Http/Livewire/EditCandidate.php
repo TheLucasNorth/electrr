@@ -50,7 +50,7 @@ class EditCandidate extends Component
         $candidate->name = $this->name;
         $candidate->manifesto = $this->manifesto;
         if ($this->image != null) {
-            $candidate->image = $this->image->store('uploads/images');
+            $candidate->image = $this->image->storePublicly('', 'images');
             $this->uploadCount++;
         }
         if ($this->removeImage) {
