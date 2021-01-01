@@ -7,7 +7,7 @@
 
     <div class="py-6">
 
-        @isset($elelection->description)
+        @isset($election->description)
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-3">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="prose p-4">
