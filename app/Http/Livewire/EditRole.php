@@ -81,6 +81,6 @@ class EditRole extends Component
         $role->ranked = $this->ranked;
         $role->ron = $this->ron;
         $role->save();
-        return $this->redirect(route('election.edit', ['election' => $this->election->slug]))->with(['message' => "Role updated."]);
+        return $this->redirect(route('election.edit', ['election' => $this->election->slug]));
     }
 }
