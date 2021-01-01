@@ -42,40 +42,80 @@
                                 <p>You can vote for candidates in preference order. You do not need to vote for
                                     all candidates, or use all preferences.</p>
 
-                                @for($i=1; $i<=count($candidates); $i++)
-                                    <div>
-                                        <label for="method">Preference {{$i}}:</label>
-                                        <div class="relative inline-flex">
-                                            <svg class="w-6 h-6 absolute right-0 top-1/3 pointer-events-none"
-                                                 fill="none"
-                                                 stroke="currentColor" viewBox="0 0 24 24"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="2"
-                                                      d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path>
-                                            </svg>
-                                            <select
-                                                class="mt-2 bg-white border-gray-900 py-2 pl-4 pr-6 rounded appearance-none shadow-lg ballot"
-                                                id="vote{{$i}}" name="vote[{{$i}}]" wire:model.defer="ballot.{{$i}}">
-                                                <option value="">Please select...</option>
-                                                @if($shuffle)
-                                                    @foreach($candidates->shuffle() as $candidate)
-                                                        <option
-                                                            value="{{$candidate->order}}">{{$candidate->name}}</option>
-                                                    @endforeach
-                                                @else
-                                                    @foreach($candidates as $candidate)
-                                                        <option
-                                                            value="{{$candidate->order}}">{{$candidate->name}}</option>
-                                                    @endforeach
-                                                @endif
-                                                @if($ron)
-                                                    <option value="1">Re-Open Nominations</option>
-                                                @endif
-                                            </select>
+                                @if($ron)
+                                    @for($i=1; $i<=count($candidates)+1; $i++)
+                                        <div>
+                                            <label for="method">Preference {{$i}}:</label>
+                                            <div class="relative inline-flex">
+                                                <svg class="w-6 h-6 absolute right-0 top-1/3 pointer-events-none"
+                                                     fill="none"
+                                                     stroke="currentColor" viewBox="0 0 24 24"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path>
+                                                </svg>
+                                                <select
+                                                    class="mt-2 bg-white border-gray-900 py-2 pl-4 pr-6 rounded appearance-none shadow-lg ballot"
+                                                    id="vote{{$i}}" name="vote[{{$i}}]"
+                                                    wire:model.defer="ballot.{{$i}}">
+                                                    <option value="">Please select...</option>
+                                                    @if($shuffle)
+                                                        @foreach($candidates->shuffle() as $candidate)
+                                                            <option
+                                                                value="{{$candidate->order}}">{{$candidate->name}}</option>
+                                                        @endforeach
+                                                    @else
+                                                        @foreach($candidates as $candidate)
+                                                            <option
+                                                                value="{{$candidate->order}}">{{$candidate->name}}</option>
+                                                        @endforeach
+                                                    @endif
+                                                    @if($ron)
+                                                        <option value="1">Re-Open Nominations</option>
+                                                    @endif
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                @endfor
+                                    @endfor
+                                @else
+                                    @for($i=1; $i<=count($candidates); $i++)
+                                        <div>
+                                            <label for="method">Preference {{$i}}:</label>
+                                            <div class="relative inline-flex">
+                                                <svg class="w-6 h-6 absolute right-0 top-1/3 pointer-events-none"
+                                                     fill="none"
+                                                     stroke="currentColor" viewBox="0 0 24 24"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path>
+                                                </svg>
+                                                <select
+                                                    class="mt-2 bg-white border-gray-900 py-2 pl-4 pr-6 rounded appearance-none shadow-lg ballot"
+                                                    id="vote{{$i}}" name="vote[{{$i}}]"
+                                                    wire:model.defer="ballot.{{$i}}">
+                                                    <option value="">Please select...</option>
+                                                    @if($shuffle)
+                                                        @foreach($candidates->shuffle() as $candidate)
+                                                            <option
+                                                                value="{{$candidate->order}}">{{$candidate->name}}</option>
+                                                        @endforeach
+                                                    @else
+                                                        @foreach($candidates as $candidate)
+                                                            <option
+                                                                value="{{$candidate->order}}">{{$candidate->name}}</option>
+                                                        @endforeach
+                                                    @endif
+                                                    @if($ron)
+                                                        <option value="1">Re-Open Nominations</option>
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        </div>
+                                    @endfor
+                                @endif
+
                             @endif
 
                             <div>
