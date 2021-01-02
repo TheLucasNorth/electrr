@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\BallotController;
-use App\Http\Controllers\CandidateController;
-use App\Http\Controllers\ElectionController;
-use App\Http\Controllers\InviteController;
+use App\Http\Controllers\api\BallotController;
+use App\Http\Controllers\api\CandidateController;
+use App\Http\Controllers\api\ElectionController;
+use App\Http\Controllers\api\InviteController;
 use App\Http\Controllers\ResultController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\VoterController;
+use App\Http\Controllers\api\RoleController;
+use App\Http\Controllers\api\VoterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
