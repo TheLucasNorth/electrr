@@ -40,7 +40,7 @@ class InviteController extends Controller
             DB::table('election_user')->insert(
                 ['election_id' => $election->id, 'user_id' => $user->id]
             );
-            return response()->noContent(201);
+            return response()->make('Access Granted',201);
         }
 
         // if the email does not belong to a user, check if an invite already exists, and if it does return 409 Conflict
@@ -53,7 +53,7 @@ class InviteController extends Controller
         $invite->email = $request->email;
         $invite->election_id = $election->id;
         $invite->save();
-        return response()->noContent(201);
+        return response()->make('Invite created',201);
 
     }
 }
