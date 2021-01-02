@@ -15,11 +15,11 @@ class EditRole extends Component
     public $election;
     public $description;
     public $seats;
-    public $votingOpen;
-    public $votingClose;
+    public $voting_open;
+    public $voting_close;
     public $nominations;
-    public $nominationsOpen;
-    public $nominationsClose;
+    public $nominations_open;
+    public $nominations_close;
     public $ron;
     public $ranked;
     public $information;
@@ -34,10 +34,6 @@ class EditRole extends Component
         $this->role = $role;
 
         $this->fill($role);
-        $this->votingOpen = $role->voting_open->format("d-m-Y H:i");
-        $this->votingClose = $role->voting_close->format("d-m-Y H:i");
-        $this->nominationsOpen = $role->nominations_open->format("d-m-Y H:i");
-        $this->nominationsClose = $role->nominations_close->format("d-m-Y H:i");
         $this->information = $role->nomination_contact;
 
         $this->vOpenID = 'a'.Str::random(5);
@@ -52,10 +48,10 @@ class EditRole extends Component
 
     protected $rules = [
         'name' => 'required',
-        'votingOpen' => 'required|date',
-        'votingClose' => 'required|date',
-        'nominationsOpen' => 'required_if:nominations,true|date|nullable',
-        'nominationsClose' => 'required_if:nominations,true|date|nullable',
+        'voting_open' => 'required|date',
+        'voting_close' => 'required|date',
+        'nominations_open' => 'required_if:nominations,true|date|nullable',
+        'nominations_close' => 'required_if:nominations,true|date|nullable',
         'nominations' => 'required|boolean',
         'ranked' => 'nullable|boolean',
         'seats' => 'required|integer',
@@ -73,11 +69,11 @@ class EditRole extends Component
         $role->name = $this->name;
         $role->seats = $this->seats;
         $role->description = $this->description;
-        $role->voting_open = $this->votingOpen;
-        $role->voting_close = $this->votingClose;
+        $role->voting_open = Carbon::createFromFormat('d-m-Y H:i',$this->voting_open);
+        $role->voting_close = Carbon::createFromFormat('d-m-Y H:i',$this->voting_close);
         $role->nominations = $this->nominations;
-        $role->nominations_open = $this->nominationsOpen;
-        $role->nominations_close = $this->nominationsClose;
+        $role->nominations_open = Carbon::createFromFormat('d-m-Y H:i',$this->nominations_open);
+        $role->nominations_close = Carbon::createFromFormat('d-m-Y H:i',$this->nominations_close);
         $role->nomination_contact = $this->information;
         $role->ranked = $this->ranked;
         $role->ron = $this->ron;

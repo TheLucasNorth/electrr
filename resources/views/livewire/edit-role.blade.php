@@ -52,7 +52,7 @@
                 </label>
             </div>
             <div>
-                <x-date-time name="votingOpen" wire:model.lazy="votingOpen" id="{{$vOpenID}}"/>
+                <input type="text" class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 dateTimePicker" name="votingOpen" wire:model.lazy="voting_open" id="votingOpen" >
             </div>
         </div>
         <div class="md:flex md:items-center mb-6">
@@ -62,7 +62,7 @@
                 </label>
             </div>
             <div>
-                <x-date-time name="votingClose" wire:model.lazy="votingClose" id="{{$vCloseID}}"/>
+                <input type="text" class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 dateTimePicker" name="votingClose" wire:model.lazy="voting_close" id="votingClose" >
             </div>
         </div>
 
@@ -89,7 +89,7 @@
                         </label>
                     </div>
                     <div>
-                        <x-date-time name="nominationsOpen" wire:model.lazy="nominationsOpen" id="{{$nOpenID}}"/>
+                        <input type="text" class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 dateTimePicker" name="nominationsOpen" wire:model.lazy="nominations_open" id="nomsOpen" >
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
@@ -99,7 +99,7 @@
                         </label>
                     </div>
                     <div>
-                        <x-date-time name="nominationsClose" wire:model.lazy="nominationsClose" id="{{$nCloseID}}"/>
+                        <input type="text" class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 dateTimePicker" name="nominationsClose" wire:model.lazy="nominations_close" id="nomsClose" >
                     </div>
                 </div>
 
@@ -166,14 +166,46 @@
     </form>
 
     @push('scripts')
+        @once
         <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
         <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        @endonce
         <script>
             var easymde = new EasyMDE({forceSync: true});
             easymde.codemirror.on('change', function () {
             @this.description = easymde.value()
             });
         </script>
+            <script>
+                flatpickr("#votingOpen", {
+                    enableTime: true,
+                    dateFormat: "d-m-Y H:i",
+                    defaultDate: "{{$voting_open}}"
+                });
+            </script>
+            <script>
+                flatpickr("#votingClose", {
+                    enableTime: true,
+                    dateFormat: "d-m-Y H:i",
+                    defaultDate: "{{$voting_close}}"
+                });
+            </script>
+        <script>
+            flatpickr("#nomsOpen", {
+                enableTime: true,
+                dateFormat: "d-m-Y H:i",
+                defaultDate: "{{$nominations_open}}"
+            });
+        </script>
+            <script>
+                flatpickr("#nomsClose", {
+                    enableTime: true,
+                    dateFormat: "d-m-Y H:i",
+                    defaultDate: "{{$nominations_close}}"
+                });
+            </script>
     @endpush
 
 </div>
