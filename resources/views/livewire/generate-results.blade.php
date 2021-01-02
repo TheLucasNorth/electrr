@@ -15,7 +15,6 @@
                 @endunless
                 <option value="Coombs">Coombs</option>
                 <option value="ERS97STV">ERS97STV</option>
-                <option value="FTSTV">FTSTV</option>
                 <option value="GPCA2000STV">GPCA2000STV</option>
                 <option value="IRV">IRV</option>
                 <option value="MeekNZSTV">MeekNZSTV</option>
@@ -24,7 +23,6 @@
                 <option value="MinneapolisSTV">MinneapolisSTV</option>
                 <option value="NIrelandSTV">NIrelandSTV</option>
                 <option value="QPQ">QPQ</option>
-                <option value="RTSTV">RTSTV</option>
                 <option value="SNTV">SNTV</option>
                 <option value="SanFranciscoRCV">SanFranciscoRCV</option>
                 <option value="ScottishSTV" selected>ScottishSTV</option>
