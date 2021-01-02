@@ -35,9 +35,9 @@ class Role extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'voting_open' => 'datetime',
-        'voting_close' => 'datetime',
-        'nominations_open' => 'datetime',
-        'nominations_close' => 'datetime'
+        'voting_open' => 'datetime:d-m-Y H:i',
+        'voting_close' => 'datetime:d-m-Y H:i',
+        'nominations_open' => 'datetime:d-m-Y H:i',
+        'nominations_close' => 'datetime:d-m-Y H:i'
     ];
 }
