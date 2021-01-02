@@ -6,12 +6,17 @@ use App\Models\Ballot;
 use App\Models\Candidate;
 use App\Models\Election;
 use App\Models\Role;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ResultController extends Controller
 {
-
+    /**
+     * @param Election $election
+     * @param Role $role
+     * @return string
+     */
     public function generate(Election $election, Role $role)
     {
         // begin the generation of results. Aims: collect all votes for the role, process them into a .blt file format, and return the contents of the file
@@ -44,15 +49,24 @@ class ResultController extends Controller
         foreach ($ballots as $ballot) {
             $output[] = decrypt($ballot->vote);
         }
+        // votes are encrypted at storage and must be decrypted. Votes are stored in the format they must appear on the ballot.
         $output[] = "0 # End of ballots is marked by a single line containing a zero.";
         $output[] = "# Candidate names, in database order.";
         foreach ($useableCandidates as $candidate) {
             $output[] = "\"$candidate\"";
         }
         $output[] = "\"$election->name : $role->name\" # The name of the election and role being counted.";
+        // all lines of the blt have now been generated, and the output array holds each line in an item. Implode the array with the newline character to return a useful format.
         return implode("\n", $output);
     }
 
+
+    /**
+     * @param Election $election
+     * @param Role $role
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * Returns the blt format result as a downloadable file
+     */
     public function download(Election $election, Role $role) {
         $this->election = $election;
         $this->role = $role;
@@ -61,21 +75,85 @@ class ResultController extends Controller
         }, $election->name.' - '.$role->name.'.blt');
     }
 
-    public function calculate(Election $election, Role $role, $method) {
-        $this->election = $election;
-        $this->role = $role;
-        return response()->streamDownload(function () {
-            echo $this->generate($this->election, $this->role);
-        }, $election->name.' - '.$role->name.'.blt');
+    /**
+     * @param Election $election
+     * @param Role $role
+     * @param $method
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function display(Election $election, Role $role, $method) {
+        return view('dashboard.results')->with('election', $election)->with('role', $role)->with('method', $method);
     }
 
+    /**
+     * @param Request $request
+     * @param Election $election
+     * @param Role $role
+     * @return \Illuminate\Http\JsonResponse|string
+     */
     public function apiGenerate(Request $request, Election $election, Role $role) {
         if (!$request->user()->tokenCan('results')) {
             return response()->json(['message' => 'not authorised'], 401);
         }
-
         return $this->generate($election, $role);
-
     }
+
+    /**
+     * @param Request $request
+     * @param Election $election
+     * @param Role $role
+     * @return \Illuminate\Http\JsonResponse|string
+     */
+    public function apiCalculate(Request $request, Election $election, Role $role, $method) {
+        if (!$request->user()->tokenCan('results')) {
+            return response()->json(['message' => 'not authorised'], 401);
+        }
+        return $this->calculate($election, $role, $method);
+    }
+
+
+    // OPTIONS for calculating results. Please read the documentation, choose a method, and un-comment that method
+
+    /**
+     * LOCAL method - use a locally stored version of openstv to count results.
+     * Please be aware that calling python in this way may expose a security vulnerability, you should make yourself comfortable with the PHP exec() command before using
+     * @param Election $election
+     * @param Role $role
+     * @param $method
+     * @return string
+     */
+    /*
+    public function calculate(Election $election, Role $role, $method) {
+        $filename = $election->name.'-'.$role->name.now().'.blt';
+        Storage::put($filename, $this->generate($election, $role));
+        $command = escapeshellcmd('python3 runElection.py -r HtmlReport '.$method.' "'.storage_path('app').'/'.$filename.'"');
+        exec($command, $results);
+        Storage::delete($filename);
+        return implode($results);
+    }
+    */
+
+    /**
+     * REMOTE method - use a remote function to calculate results
+     * @param Election $election
+     * @param Role $role
+     * @param $method
+     * @return string
+     */
+    /*
+    public function calculate(Election $election, Role $role, $method) {
+        $filename = $election->name.'-'.$role->name.now().'.blt';
+        Storage::put($filename, $this->generate($election, $role));
+        $endpoint = "YOUR ENDPOINT HERE";
+        $file = Storage::url($filename);
+        $client = new Client();
+        $response = $client->request('GET', $endpoint, ['query' => [
+            'file' => $file,
+            'method' => $method
+        ]]);
+        Storage::delete($filename);
+        return $response;
+    }
+    */
 
 }
