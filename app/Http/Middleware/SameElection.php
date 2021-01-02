@@ -20,6 +20,25 @@ class SameElection
             return response()->json(['message' => 'not authorised'], 401);
         }
 
+        if ($request->role) {
+            if ($request->role->election_id != $request->election->id) {
+                return response()->json(['message' => 'not authorised'], 401);
+            }
+        }
+
+        if ($request->candidate) {
+            if ($request->candidate->election_id != $request->election->id) {
+                return response()->json(['message' => 'not authorised'], 401);
+            }
+        }
+
+        if ($request->voter) {
+            if ($request->candidate->election_id != $request->election->id) {
+                return response()->json(['message' => 'not authorised'], 401);
+            }
+        }
+
+
         return $next($request);
     }
 }
