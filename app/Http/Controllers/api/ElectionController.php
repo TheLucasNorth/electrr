@@ -90,7 +90,7 @@ class ElectionController extends Controller
         $election->nomination_contact = $request->nomination_contact;
         $election->custom = $request->custom;
         $election->save();
-        return response()->noContent();
+        return response()->make('Election Updated', 202);
     }
 
     public function turnout(Election $election, $token) {
