@@ -12,6 +12,20 @@ use Illuminate\Http\Response;
 class CandidateController extends Controller
 {
 
+    public function index(Request $request, Election $election, Role $role) {
+        if (!$request->user()->tokenCan('candidates')) {
+            return response()->json(['message' => 'not authorised'], 401);
+        }
+        return $role->candidates;
+    }
+
+    public function show(Request $request, Election $election, Role $role, Candidate $candidate) {
+        if (!$request->user()->tokenCan('candidates')) {
+            return response()->json(['message' => 'not authorised'], 401);
+        }
+        return $candidate;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
