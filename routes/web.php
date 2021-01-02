@@ -46,7 +46,7 @@ Route::get('/dashboard/elections/{election}/roles/{role:id}/results', [ResultCon
 
 Route::get('/dashboard/elections/{election}/roles/{role:id}/results/download', [ResultController::class, 'download'])->middleware(['auth:sanctum', 'verified', 'managed', 'exists'])->name('results.download');
 
-Route::get('/dashboard/elections/{election}/roles/{role:id}/results/calculate/{method}', [ResultController::class, 'calculate'])->middleware(['auth:sanctum', 'verified', 'managed', 'exists'])->name('results.calculate');
+Route::get('/dashboard/elections/{election}/roles/{role:id}/results/calculate/{method}', [ResultController::class, 'display'])->middleware(['auth:sanctum', 'verified', 'managed', 'exists'])->name('results.calculate');
 
 Route::view('/elections/{election}/login', 'voting.login')->middleware('exists');
 
