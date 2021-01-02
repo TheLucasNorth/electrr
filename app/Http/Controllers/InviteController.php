@@ -12,16 +12,17 @@ use Illuminate\Support\Facades\DB;
 
 class InviteController extends Controller
 {
-        /**
+    /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
      * @return Response
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function store(Request $request, Election  $election)
     {
         if (!$request->user()->tokenCan('details')) {
-            return response()->json(['message' => 'not authorised'], 401);
+            return response()->make('not authorised', 401);
         }
         $data = $request->validate([
            'email' => 'required|email:rfc'
