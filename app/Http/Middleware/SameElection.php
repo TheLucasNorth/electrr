@@ -33,7 +33,7 @@ class SameElection
         }
 
         if ($request->voter) {
-            if ($request->candidate->election_id != $request->election->id) {
+            if ($request->voter->election_id != $request->election->id) {
                 return response()->json(['message' => 'not authorised'], 401);
             }
         }
