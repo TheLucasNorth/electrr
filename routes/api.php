@@ -44,3 +44,4 @@ Route::middleware(['auth:sanctum', 'same'])->post('/elections/{election}/roles/{
 Route::get('/elections/{election}/turnout/{token}', [ElectionController::class, 'turnout']);
 
 Route::middleware(['auth:sanctum', 'same'])->get('/elections/{election}/roles/{role:id}/results', [ResultController::class, 'apiGenerate']);
+Route::middleware(['auth:sanctum', 'same'])->get('/elections/{election}/roles/{role:id}/results/calculate/{method}', [ResultController::class, 'apiCalculate']);
