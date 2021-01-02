@@ -34,7 +34,7 @@ class AssertVoter
             return $next($request);
         }
         elseif (!$request->expectsJson()) {
-            return redirect("/elections/$election->slug/login");
+            return redirect(route('frontend.login', ['election' => $election->slug]));
         }
         else {
             return abort(403);

@@ -18,7 +18,7 @@ class AssertManagement
     public function handle($request, Closure $next)
     {
         $election = $request->route('election');
-        if($election->managedBy(Auth::user())) {
+        if($election->managedBy(Auth::guard('admin')->user())) {
             return $next($request);
         }
         else {

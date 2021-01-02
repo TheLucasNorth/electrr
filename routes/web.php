@@ -22,31 +22,31 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
-Route::view('/dashboard', 'dashboard')->middleware(['auth:sanctum', 'verified'])->name('dashboard');
+Route::view('/dashboard', 'dashboard')->middleware(['auth:web', 'verified'])->name('dashboard');
 
-Route::view('/dashboard/elections', 'dashboard.create.election')->middleware(['auth:sanctum', 'verified'])->name('election.create');
+Route::view('/dashboard/elections', 'dashboard.create.election')->middleware(['auth:web', 'verified'])->name('election.create');
 
-Route::get('/dashboard/elections/{election}', [ElectionController::class, 'edit'])->middleware(['auth:sanctum', 'verified', 'managed', 'exists'])->name('election.edit');
+Route::get('/dashboard/elections/{election}', [ElectionController::class, 'edit'])->middleware(['auth:web', 'verified', 'managed', 'exists'])->name('election.edit');
 
-Route::get('/dashboard/elections/{election}/api', [ElectionApiTokenController::class, 'index'])->middleware(['auth:sanctum', 'verified', 'managed', 'exists'])->name('election.api');
+Route::get('/dashboard/elections/{election}/api', [ElectionApiTokenController::class, 'index'])->middleware(['auth:web', 'verified', 'managed', 'exists'])->name('election.api');
 
-Route::get('/dashboard/elections/{election}/voters', [VoterController::class, 'index'])->middleware(['auth:sanctum', 'verified', 'managed', 'exists'])->name('voters');
+Route::get('/dashboard/elections/{election}/voters', [VoterController::class, 'index'])->middleware(['auth:web', 'verified', 'managed', 'exists'])->name('voters');
 
-Route::get('/dashboard/elections/{election}/voters/email', [VoterController::class, 'indexEmail'])->middleware(['auth:sanctum', 'verified', 'managed', 'exists'])->name('emailVoters');
+Route::get('/dashboard/elections/{election}/voters/email', [VoterController::class, 'indexEmail'])->middleware(['auth:web', 'verified', 'managed', 'exists'])->name('emailVoters');
 
-Route::get('/dashboard/elections/{election}/roles', [RoleController::class, 'create'])->middleware(['auth:sanctum', 'verified', 'managed', 'exists'])->name('role.create');
+Route::get('/dashboard/elections/{election}/roles', [RoleController::class, 'create'])->middleware(['auth:web', 'verified', 'managed', 'exists'])->name('role.create');
 
-Route::get('/dashboard/elections/{election}/roles/{role:id}', [RoleController::class, 'edit'])->middleware(['auth:sanctum', 'verified', 'managed', 'exists'])->name('role.edit');
+Route::get('/dashboard/elections/{election}/roles/{role:id}', [RoleController::class, 'edit'])->middleware(['auth:web', 'verified', 'managed', 'exists'])->name('role.edit');
 
-Route::get('/dashboard/elections/{election}/roles/{role:id}/candidates', [CandidateController::class, 'create'])->middleware(['auth:sanctum', 'verified', 'managed', 'exists'])->name('candidate.create');
+Route::get('/dashboard/elections/{election}/roles/{role:id}/candidates', [CandidateController::class, 'create'])->middleware(['auth:web', 'verified', 'managed', 'exists'])->name('candidate.create');
 
-Route::get('/dashboard/elections/{election}/roles/{role}/candidates/{candidate}', [CandidateController::class, 'edit'])->middleware(['auth:sanctum', 'verified', 'managed', 'exists'])->name('candidate.edit');
+Route::get('/dashboard/elections/{election}/roles/{role}/candidates/{candidate}', [CandidateController::class, 'edit'])->middleware(['auth:web', 'verified', 'managed', 'exists'])->name('candidate.edit');
 
-Route::get('/dashboard/elections/{election}/roles/{role:id}/results', [ResultController::class, 'generate'])->middleware(['auth:sanctum', 'verified', 'managed', 'exists'])->name('results.raw');
+Route::get('/dashboard/elections/{election}/roles/{role:id}/results', [ResultController::class, 'generate'])->middleware(['auth:web', 'verified', 'managed', 'exists'])->name('results.raw');
 
-Route::get('/dashboard/elections/{election}/roles/{role:id}/results/download', [ResultController::class, 'download'])->middleware(['auth:sanctum', 'verified', 'managed', 'exists'])->name('results.download');
+Route::get('/dashboard/elections/{election}/roles/{role:id}/results/download', [ResultController::class, 'download'])->middleware(['auth:web', 'verified', 'managed', 'exists'])->name('results.download');
 
-Route::get('/dashboard/elections/{election}/roles/{role:id}/results/calculate/{method}', [ResultController::class, 'display'])->middleware(['auth:sanctum', 'verified', 'managed', 'exists'])->name('results.calculate');
+Route::get('/dashboard/elections/{election}/roles/{role:id}/results/calculate/{method}', [ResultController::class, 'display'])->middleware(['auth:web', 'verified', 'managed', 'exists'])->name('results.calculate');
 
 Route::view('/elections/{election}/login', 'voting.login')->middleware('exists');
 

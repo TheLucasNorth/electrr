@@ -26,7 +26,7 @@ class ShowElections extends Component
             }
         }
 
-        $this->elections = Auth::user()->elections();
+        $this->elections = Auth::guard('admin')->user()->elections();
     }
 
     public function render()

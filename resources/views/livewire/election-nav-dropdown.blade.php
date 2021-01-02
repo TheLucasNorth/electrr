@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    @auth("sanctum")
+                    @auth("admin")
                     <x-jet-nav-link href="{{ route('election.edit') }}" :active="false">
                         {{ __('Edit Election') }}
                     </x-jet-nav-link>
@@ -38,7 +38,7 @@
                             class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                             @auth("voter")
                                 <div>{{ Auth::guard('voter')->user()->username }}</div>
-                            @elseauth('sanctum')
+                            @elseauth('admin')
                                 <div>{{ Auth::user()->name }}</div>
                             @endauth
 
@@ -93,7 +93,7 @@
             </x-jet-responsive-nav-link>
         </div>
 
-    @if(Auth::check() | \Illuminate\Support\Facades\Auth::guard('voter')->check())
+    @if(Auth::guard('admin')->check() | Auth::guard('voter')->check())
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
 

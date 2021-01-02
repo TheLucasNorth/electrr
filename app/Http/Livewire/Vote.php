@@ -30,7 +30,7 @@ class Vote extends Component
         if (Auth::guard('voter')->check()) {
             $this->vid = 'v'.Auth::id();
         }
-        elseif (Auth::guard('sanctum')->check()) {
+        elseif (Auth::guard('admin')->check()) {
             $this->vid = 'u'.Auth::id();
         }
         if (Ballot::where('role_id', $role->id)->where('voter_id', $this->vid)->exists()) {
