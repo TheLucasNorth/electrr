@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -33,10 +34,10 @@ class EditRole extends Component
         $this->role = $role;
 
         $this->fill($role);
-        $this->votingOpen = $role->voting_open;
-        $this->votingClose = $role->voting_close;
-        $this->nominationsOpen = $role->nominations_open;
-        $this->nominationsClose = $role->nominations_close;
+        $this->votingOpen = $role->voting_open->format("d-m-Y H:i");
+        $this->votingClose = $role->voting_close->format("d-m-Y H:i");
+        $this->nominationsOpen = $role->nominations_open->format("d-m-Y H:i");
+        $this->nominationsClose = $role->nominations_close->format("d-m-Y H:i");
         $this->information = $role->nomination_contact;
 
         $this->vOpenID = 'a'.Str::random(5);

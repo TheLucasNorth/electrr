@@ -81,7 +81,7 @@ class Election extends Authenticatable
         $today = Carbon::now();
         $activeRoles = [];
         foreach ($this->roles as $role) {
-            if (Carbon::parse($role->voting_open)->lte($today) && Carbon::parse($role->voting_close)->gt($today)) {
+            if ($role->voting_open->lte($today) && $role->voting_close->gt($today)) {
                 $activeRoles[] = $role;
             }
         }

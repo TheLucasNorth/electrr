@@ -21,7 +21,7 @@ class NominationController extends Controller
         if ($election->nominations) {
             $roles = [];
             foreach ($election->roles()->where('nominations', true)->get() as $role) {
-                if (Carbon::parse($role->nominations_open)->lte(Carbon::now()) && Carbon::parse($role->nominations_close)->gte(Carbon::now())) {
+                if ($role->nominations_open->lte(Carbon::now()) && $role->nominations_close->gte(Carbon::now())) {
                     $roles[] = $role;
                 }
             }
