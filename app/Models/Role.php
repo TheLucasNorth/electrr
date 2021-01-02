@@ -41,6 +41,7 @@ class Role extends Model
         'nominations_close' => 'datetime:d-m-Y H:i',
         'ron' => 'boolean',
         'ranked' => 'boolean',
-        'nominations' => 'boolean'
+        'nominations' => 'boolean',
+        'custom' => 'array'
     ];
 }
