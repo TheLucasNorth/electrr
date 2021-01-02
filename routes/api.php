@@ -41,6 +41,9 @@ Route::middleware(['auth:sanctum', 'same'])->put('/elections/{election}/roles/{r
 Route::middleware(['auth:sanctum', 'same'])->get('/elections/{election}/roles/{role:id}/candidates/{candidate:id}', [CandidateController::class, 'show']);
 
 Route::middleware(['auth:sanctum', 'same'])->post('/elections/{election}/voters', [VoterController::class, 'store']);
+Route::middleware(['auth:sanctum', 'same'])->get('/elections/{election}/voters', [VoterController::class, 'index']);
+Route::middleware(['auth:sanctum', 'same'])->get('/elections/{election}/voters/{voter}', [VoterController::class, 'show']);
+Route::middleware(['auth:sanctum', 'same'])->delete('/elections/{election}/voters/{voter}', [VoterController::class, 'destroy']);
 Route::middleware(['auth:sanctum', 'same'])->post('/elections/{election}/voters/factory', [VoterController::class, 'storeFactory']);
 
 Route::middleware(['auth:sanctum', 'same'])->post('/elections/{election}/roles/{role:id}/ballots', [BallotController::class, 'store']);

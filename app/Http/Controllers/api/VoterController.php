@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\Election;
 use App\Jobs\FactoryVoters;
+use App\Models\Role;
 use App\Models\Voter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -70,6 +71,13 @@ class VoterController extends Controller
         ]);
         FactoryVoters::dispatch($election, $data['quantity']);
         return response()->noContent();
+    }
+
+    public function show(Request $request, Election $election, Role $role, Voter $voter) {
+        if (!$request->user()->tokenCan('voters')) {
+            return response()->json(['message' => 'not authorised'], 401);
+        }
+        return $voter;
     }
 
     /**
