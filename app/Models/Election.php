@@ -18,6 +18,13 @@ class Election extends Authenticatable
     use HasApiTokens;
     protected $guarded = [];
 
+    protected $casts = [
+        'nominations' => 'boolean',
+        'shuffle_manifestos' => 'boolean',
+        'shuffle_candidates' => 'boolean',
+        'description_home' => 'boolean',
+        'description_nomination' => 'boolean'
+    ];
 
     public function resolveRouteBinding($value, $field = null)
     {

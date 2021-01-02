@@ -38,6 +38,9 @@ class Role extends Model
         'voting_open' => 'datetime:d-m-Y H:i',
         'voting_close' => 'datetime:d-m-Y H:i',
         'nominations_open' => 'datetime:d-m-Y H:i',
-        'nominations_close' => 'datetime:d-m-Y H:i'
+        'nominations_close' => 'datetime:d-m-Y H:i',
+        'ron' => 'boolean',
+        'ranked' => 'boolean',
+        'nominations' => 'boolean'
     ];
 }
