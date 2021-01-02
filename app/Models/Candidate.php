@@ -18,5 +18,10 @@ class Candidate extends Model
 
     protected $casts = [
       'contact' => 'array',
+        'order' => 'integer',
+        'election_id' => 'integer',
+        'role_id' => 'integer',
+        'approved' => 'boolean',
+        'withdrawn' => 'boolean'
     ];
 }
