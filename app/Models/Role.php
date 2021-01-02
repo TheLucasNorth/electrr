@@ -42,6 +42,8 @@ class Role extends Model
         'ron' => 'boolean',
         'ranked' => 'boolean',
         'nominations' => 'boolean',
-        'custom' => 'array'
+        'custom' => 'array',
+        'seats' => 'integer',
+        'election_id' => 'integer'
     ];
 }
