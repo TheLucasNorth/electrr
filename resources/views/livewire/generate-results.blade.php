@@ -25,7 +25,7 @@
                 <option value="QPQ">QPQ</option>
                 <option value="SNTV">SNTV</option>
                 <option value="SanFranciscoRCV">SanFranciscoRCV</option>
-                <option value="ScottishSTV" selected>ScottishSTV</option>
+                <option value="ScottishSTV">ScottishSTV</option>
                 <option value="SuppVote">SuppVote</option>
                 <option value="WarrenQXSTV ">WarrenQXSTV</option>
                 <option value="WarrenSTV">WarrenSTV</option>
