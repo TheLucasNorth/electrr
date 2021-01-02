@@ -101,6 +101,6 @@ class RoleController extends Controller
         $role->nomination_contact = $request->nomination_contact;
         $role->custom = $request->custom;
         $role->save();
-        return response()->noContent(204);
+        return response()->make('Role Updated', 202);
     }
 }
