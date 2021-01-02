@@ -13,6 +13,21 @@ use Illuminate\Support\Str;
 
 class RoleController extends Controller
 {
+
+    public function index(Request $request, Election $election) {
+        if (!$request->user()->tokenCan('roles')) {
+            return response()->json(['message' => 'not authorised'], 401);
+        }
+        return $election->roles;
+    }
+
+    public function show(Request $request, Election $election, Role $role) {
+        if (!$request->user()->tokenCan('roles')) {
+            return response()->json(['message' => 'not authorised'], 401);
+        }
+        return $role;
+    }
+
      /**
      * Store a newly created resource in storage.
      *
