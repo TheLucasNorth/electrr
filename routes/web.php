@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ElectionApiTokenController;
+use App\Http\Controllers\Frontend\ElectionApiTokenController;
 use App\Http\Controllers\Frontend\CandidateController;
 use App\Http\Controllers\Frontend\ElectionController;
 use App\Http\Controllers\Frontend\NominationController;
