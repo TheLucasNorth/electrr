@@ -13,11 +13,11 @@ class AddRole extends Component
     public \App\Models\Election $election;
     public $description;
     public $seats;
-    public $votingOpen;
-    public $votingClose;
+    public $voting_open;
+    public $voting_close;
     public $nominations = false;
-    public $nominationsOpen;
-    public $nominationsClose;
+    public $nominations_open;
+    public $nominations_close;
     public $ron = false;
     public $ranked = false;
     public $information;
@@ -41,10 +41,10 @@ class AddRole extends Component
 
     protected $rules = [
         'name' => 'required',
-        'votingOpen' => 'required|date',
-        'votingClose' => 'required|date',
-        'nominationsOpen' => 'required_if:nominations,true|date|nullable',
-        'nominationsClose' => 'required_if:nominations,true|date|nullable',
+        'voting_open' => 'required|date',
+        'voting_close' => 'required|date',
+        'nominations_open' => 'required_if:nominations,true|date|nullable',
+        'nominations_close' => 'required_if:nominations,true|date|nullable',
         'nominations' => 'required|boolean',
         'ranked' => 'nullable|boolean',
         'seats' => 'required|integer',
@@ -57,11 +57,11 @@ class AddRole extends Component
         $role->name = $this->name;
         $role->seats = $this->seats;
         $role->description = $this->description;
-        $role->voting_open = $this->votingOpen;
-        $role->voting_close = $this->votingClose;
+        $role->voting_open = $this->voting_open;
+        $role->voting_close = $this->voting_close;
         $role->nominations = $this->nominations;
-        $role->nominations_open = $this->nominationsOpen;
-        $role->nominations_close = $this->nominationsClose;
+        $role->nominations_open = $this->nominations_open;
+        $role->nominations_close = $this->nominations_close;
         $role->nomination_contact = $this->information;
         $role->ranked = $this->ranked;
         $role->ron = $this->ron;
