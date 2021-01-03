@@ -70,7 +70,7 @@ class VoterController extends Controller
             'quantity' => 'required|integer'
         ]);
         FactoryVoters::dispatch($election, $data['quantity']);
-        return response()->noContent();
+        return response()->make('Accepted, please wait.', 202);
     }
 
     public function show(Request $request, Election $election, Role $role, Voter $voter) {
