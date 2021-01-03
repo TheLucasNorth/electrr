@@ -1,5 +1,5 @@
 <div>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-2">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
             <div class="mb-2 p-4">
                 <div class="ml-2">
