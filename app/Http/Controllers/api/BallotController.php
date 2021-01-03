@@ -44,7 +44,7 @@ class BallotController extends Controller
         )) {
             return response()->json(['verify' => $verify], 201);
         } else {
-            return response()->noContent(500);
+            return response()->json(['message' => "Failed to store ballot."], 500);
         }
     }
 }
