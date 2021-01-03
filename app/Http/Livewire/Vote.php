@@ -83,7 +83,7 @@ class Vote extends Component
             ['voter_id' => $this->vid, 'election_id' => $this->eid, 'role_id' => $this->rid],
             ['vote' => encrypt($string)]
         );
-        $this->verify = $string;
+        $this->verify = $verify;
     }
 
 }
