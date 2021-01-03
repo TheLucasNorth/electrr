@@ -91,7 +91,7 @@ class VoterController extends Controller
         if (!$request->user()->tokenCan('voters')) {
             return response()->json(['message' => 'not authorised'], 401);
         }
-        Voter::find($id)->delete();
+        Voter::destroy($id);
         return response()->make('Success', 200);
     }
 }
