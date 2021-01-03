@@ -203,4 +203,19 @@
         </script>
     @endpush
 
+    @if($nominations)
+        <script>
+            flatpickr("#nomsOpen", {
+                enableTime: true,
+                dateFormat: "d-m-Y H:i"
+            });
+        </script>
+        <script>
+            flatpickr("#nomsClose", {
+                enableTime: true,
+                dateFormat: "d-m-Y H:i"
+            });
+        </script>
+        @endif
+
 </div>
