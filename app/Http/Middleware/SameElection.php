@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Voter;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,7 @@ class SameElection
         }
 
         if ($request->voter) {
-            if ($request->voter->election_id != $request->election->id) {
+            if (Voter::find($request->voter)->election_id != $request->election->id) {
                 return response()->json(['message' => 'not authorised'], 401);
             }
         }
