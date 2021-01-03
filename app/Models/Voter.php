@@ -17,6 +17,10 @@ class Voter extends Authenticatable
         return $this->belongsTo('App\Models\Election');
     }
 
+    /**
+     * Sets the format for the username
+     * @return string
+     */
     public function username()
     {
         $string[1] = Str::random(3);
@@ -25,6 +29,11 @@ class Voter extends Authenticatable
         return Str::upper(implode('-', $string));
     }
 
+    /**
+     * Generates and returns a username, making sure it is unique in the election
+     * @param $election
+     * @return string
+     */
     public function safeUsername($election)
     {
         $dupe = true;
@@ -37,6 +46,10 @@ class Voter extends Authenticatable
         return $username;
     }
 
+    /**
+     * Generates and returns a password according to the format desccribed here.
+     * @return string
+     */
     public function password()
     {
         return Str::upper(Str::random(6));
