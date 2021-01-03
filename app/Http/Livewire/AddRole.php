@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -57,11 +58,17 @@ class AddRole extends Component
         $role->name = $this->name;
         $role->seats = $this->seats;
         $role->description = $this->description;
-        $role->voting_open = $this->voting_open;
-        $role->voting_close = $this->voting_close;
+        $role->voting_open = Carbon::createFromFormat('d-m-Y H:i',$this->voting_open);
+        $role->voting_close = Carbon::createFromFormat('d-m-Y H:i',$this->voting_close);
         $role->nominations = $this->nominations;
-        $role->nominations_open = $this->nominations_open;
-        $role->nominations_close = $this->nominations_close;
+        if ($this->nominations) {
+            $role->nominations_open = Carbon::createFromFormat('d-m-Y H:i',$this->nominations_open);
+            $role->nominations_close = Carbon::createFromFormat('d-m-Y H:i',$this->nominations_close);
+        }
+        else {
+            $role->nominations_open = null;
+            $role->nominations_close = null;
+        }
         $role->nomination_contact = $this->information;
         $role->ranked = $this->ranked;
         $role->ron = $this->ron;
