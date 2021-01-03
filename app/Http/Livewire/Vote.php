@@ -6,6 +6,7 @@ use App\Models\Ballot;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class Vote extends Component
@@ -22,6 +23,7 @@ class Vote extends Component
     public $eid;
     public $rid;
     public $shuffle;
+    public $validOrder;
 
     public function mount(Role $role) {
         $this->ranked = $role->ranked;
@@ -41,6 +43,13 @@ class Vote extends Component
         $this->shuffle = $role->election->shuffle_candidates;
         if (session()->get('disableShuffle')) {
             $this->shuffle = false;
+        }
+        $this->validOrder = [];
+        foreach ($this->candidates as $candidate) {
+            $this->validOrder[] = $candidate->order;
+        }
+        if ($this->ron) {
+            $this->validOrder[] = 1;
         }
     }
 
@@ -63,13 +72,18 @@ class Vote extends Component
         $this->active = false;
         $verify = Str::random(32);
         ksort($this->ballot);
+        foreach ($this->ballot as $key => $value) {
+            if (!in_array($value, $this->validOrder)) {
+                unset($this->ballot[$key]);
+            }
+        }
         $vote = implode(' ', $this->ballot);
         $string = implode(' ', [1, $vote, 0, '#', $verify]);
         Ballot::updateOrCreate(
             ['voter_id' => $this->vid, 'election_id' => $this->eid, 'role_id' => $this->rid],
             ['vote' => encrypt($string)]
         );
-        $this->verify = $verify;
+        $this->verify = $string;
     }
 
 }
