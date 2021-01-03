@@ -53,7 +53,7 @@
                 </label>
             </div>
             <div>
-                <x-date-time name="votingOpen" wire:model.lazy="votingOpen" id="{{$vOpenID}}"/>
+                <input type="text" class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 dateTimePicker" name="votingOpen" wire:model.lazy="voting_open" id="votingOpen" >
             </div>
             @error('votingOpen')
             <div style="color: red"> {{$message}} </div> @enderror
@@ -65,7 +65,7 @@
                 </label>
             </div>
             <div>
-                <x-date-time name="votingClose" wire:model.lazy="votingClose" id="{{$vCloseID}}"/>
+                <input type="text" class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 dateTimePicker" name="votingClose" wire:model.lazy="voting_close" id="votingClose" >
             </div>
             @error('votingClose')
             <div style="color: red"> {{$message}} </div> @enderror
@@ -94,7 +94,7 @@
                     </label>
                 </div>
                 <div>
-                    <x-date-time name="nominationsOpen" wire:model.lazy="nominationsOpen" id="{{$nOpenID}}"/>
+                    <input type="text" class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 dateTimePicker" name="nominationsOpen" wire:model.lazy="nominations_open" id="nomsOpen" >
                 </div>
                 @error('nominationsOpen')
                 <div style="color: red"> {{$message}} </div> @enderror
@@ -106,7 +106,7 @@
                     </label>
                 </div>
                 <div>
-                    <x-date-time name="nominationsClose" wire:model.lazy="nominationsClose" id="{{$nCloseID}}"/>
+                    <input type="text" class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 dateTimePicker" name="nominationsClose" wire:model.lazy="nominations_close" id="nomsClose" >
                 </div>
                 @error('nominationsClose')
                 <div style="color: red"> {{$message}} </div> @enderror
@@ -165,12 +165,40 @@
     </form>
 
     @push('scripts')
-        <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
-        <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+        @once
+            <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+            <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+            <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        @endonce
         <script>
             var easymde = new EasyMDE({forceSync: true});
             easymde.codemirror.on('change', function () {
             @this.description = easymde.value()
+            });
+        </script>
+        <script>
+            flatpickr("#votingOpen", {
+                enableTime: true,
+                dateFormat: "d-m-Y H:i"
+            });
+        </script>
+        <script>
+            flatpickr("#votingClose", {
+                enableTime: true,
+                dateFormat: "d-m-Y H:i"
+            });
+        </script>
+        <script>
+            flatpickr("#nomsOpen", {
+                enableTime: true,
+                dateFormat: "d-m-Y H:i"
+            });
+        </script>
+        <script>
+            flatpickr("#nomsClose", {
+                enableTime: true,
+                dateFormat: "d-m-Y H:i"
             });
         </script>
     @endpush
