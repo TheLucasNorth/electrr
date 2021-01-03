@@ -92,5 +92,6 @@ class VoterController extends Controller
             return response()->json(['message' => 'not authorised'], 401);
         }
         Voter::find($id)->delete();
+        return response()->make('Success', 200);
     }
 }
