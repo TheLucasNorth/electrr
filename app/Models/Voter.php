@@ -39,4 +39,8 @@ class Voter extends Authenticatable
     }
 
     protected $guarded = [];
+
+    protected $hidden = [
+        'password'
+    ];
 }
