@@ -89,6 +89,6 @@ class CandidateController extends Controller
             $data['approved'] = true;
         }
         $candidate->fill($data);
-        return response()->noContent();
+        return response()->make('Candidate Updated', 202);
     }
 }
