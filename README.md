@@ -6,7 +6,7 @@ electrr is an open source election management platform. It includes the features
 
 ## Documentation
 
-You can find the electrr documentation at [TBC]
+You can find the electrr documentation at https://lucasnorth.gitbook.io/electrr/
 
 ## Security Vulnerabilities
 

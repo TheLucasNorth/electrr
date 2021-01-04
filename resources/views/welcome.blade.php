@@ -47,7 +47,7 @@
 
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    <a href="" class="underline text-gray-900 dark:text-white">You may wish to start by reading the documentation.</a> You should remove or redesign this page before deploying your election.
+                                    <a href="https://lucasnorth.gitbook.io/electrr/" class="underline text-gray-900 dark:text-white">You may wish to start by reading the documentation.</a> You should remove or redesign this page before deploying your election.
                                 </div>
                             </div>
                         </div>
