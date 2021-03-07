@@ -10,7 +10,7 @@ You can find the electrr documentation at https://lucasnorth.gitbook.io/electrr/
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to contact@lucasnorth.uk. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within electrr, please send an e-mail to contact@lucasnorth.uk. All security vulnerabilities will be promptly addressed.
 
 ## License
 
