@@ -21,7 +21,7 @@ class CreateVotersTable extends Migration
             $table->string('username', 12);
             $table->string('password_plain', 6);
             $table->text('password');
-            $table->text('email')->default('no-email');
+            $table->string('email')->default('no-email');
             $table->boolean('voted')->default(false);
             $table->boolean('delivered')->nullable()->default(false);
             $table->boolean('opened')->nullable()->default(false);
