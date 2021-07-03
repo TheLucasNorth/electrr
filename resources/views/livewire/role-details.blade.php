@@ -6,9 +6,7 @@
                     <a href="{{route('frontend.vote', ['role' => $role->id])}}" style="text-underline: #2d3748; text-decoration: underline"><p class="text-2xl">{{$role->name}}</p></a>
                     @isset($role->description)
                     <div class="mt-2 prose">
-                        @markdown
-                        {{$role->description}}
-                        @endmarkdown
+                        @markdown{{$role->description}}@endmarkdown
                     </div>
                     @endisset
                     @if($voted)

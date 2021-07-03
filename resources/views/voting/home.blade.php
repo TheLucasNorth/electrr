@@ -11,9 +11,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-3">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="prose p-4">
-                    @markdown
-                    {{$election->description}}
-                    @endmarkdown
+                    @markdown{{$election->description}}@endmarkdown
                 </div>
             </div>
         </div>

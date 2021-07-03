@@ -11,9 +11,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-3">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="prose p-4">
-                    @markdown
-                    {{$role->description}}
-                    @endmarkdown
+                    @markdown{{$role->description}}@endmarkdown
                 </div>
             </div>
         </div>
@@ -36,9 +34,7 @@
                                 <p class="text-2xl">{{$candidate->name}}</p>
                                 <div class="flex flex-wrap">
                                     <div class="mt-2 prose @if($candidate->image) w-2/3 @endif ">
-                                        @markdown
-                                        {{$candidate->manifesto}}
-                                        @endmarkdown
+                                        @markdown{{$candidate->manifesto}}@endmarkdown
                                     </div>
                                     @if($candidate->image)
                                         <div class="mt-2 w-1/3">
