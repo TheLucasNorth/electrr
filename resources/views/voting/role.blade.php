@@ -38,7 +38,7 @@
                                     </div>
                                     @if($candidate->image)
                                         <div class="mt-2 w-1/3">
-                                            <img src="{{asset($candidate->image)}}">
+                                            <img src="{{asset('images/'.$candidate->image)}}">
                                         </div>
                                     @endif
                                 </div>
