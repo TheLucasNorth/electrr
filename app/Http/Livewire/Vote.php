@@ -30,10 +30,10 @@ class Vote extends Component
         $this->ron = $role->ron;
         $this->candidates = $this->getCandidates($role);
         if (Auth::guard('voter')->check()) {
-            $this->vid = 'v'.Auth::id();
+            $this->vid = 'v'.Auth::guard('voter')->id();
         }
         elseif (Auth::guard('admin')->check()) {
-            $this->vid = 'u'.Auth::id();
+            $this->vid = 'u'.Auth::guard('admin')->id();
         }
         if (Ballot::where('role_id', $role->id)->where('voter_id', $this->vid)->exists()) {
             $this->voted = true;
