@@ -15,10 +15,10 @@ class RoleDetails extends Component
 
     public function mount(Role $role) {
         if (Auth::guard('voter')->check()) {
-            $vid = 'v'.Auth::id();
+            $vid = 'v'.Auth::guard('voter')->id();
         }
         elseif (Auth::guard('sanctum')->check()) {
-            $vid = 'u'.Auth::id();
+            $vid = 'u'.Auth::guard('admin')->id();
         }
         if (Ballot::where('role_id', $role->id)->where('voter_id', $vid)->exists()) {
             $this->voted = true;
